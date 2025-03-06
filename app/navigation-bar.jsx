@@ -7,7 +7,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle
-} from "./ui/navigation-menu";
+} from "../components/ui/navigation-menu";
 import { cn } from "../lib/utils";
 
 export default function NavigationBar() {

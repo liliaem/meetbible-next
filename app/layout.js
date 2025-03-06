@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import NavigationBar from "../components/navigation-bar";
-
+import "@/app/globals.css";
+import NavigationBar from "@/app/navigation-bar";
+import { Footer } from './footer'
+import { ThemeProvider } from 'next-themes'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +23,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange>
       <NavigationBar/> {/* Agrega la barra de navegación aquí */}
         {children}
+        <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
