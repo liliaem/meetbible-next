@@ -11,15 +11,15 @@ import {
 import { cn } from "../lib/utils";
 
 export default function NavigationBar() {
-  const [isClient, setIsClient] = useState(false);
+//  const [isClient, setIsClient] = useState(false);
   
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+//  useEffect(() => {
+//    setIsClient(true);
+//  }, []);
   
-  if (!isClient) {
-    return null; // O un esqueleto de carga
-  }
+//  if (!isClient) {
+//    return <div>Loading</div>; // O un esqueleto de carga
+// }
   
   return (
     <NavigationMenu className="relative">

@@ -3,6 +3,8 @@ import "@/app/globals.css";
 import NavigationBar from "@/app/navigation-bar";
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
+import { Providers } from "./providers";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,13 +23,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange>
+        <Providers>
       <NavigationBar/> {/* Agrega la barra de navegación aquí */}
         {children}
         <Footer />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
