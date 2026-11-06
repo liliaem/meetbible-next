@@ -34,8 +34,10 @@
 
 /* Penguin container */
 .penguin {
-  width: 30vw;
-  height: 30vw;
+  /* 30% of the screen width, but never smaller than 220px (phones)
+     or bigger than 480px (large monitors) */
+  width: clamp(220px, 30vw, 480px);
+  height: clamp(220px, 30vw, 480px);
   z-index: 4;
   position: relative;
   transition: transform 1s ease-in-out 0ms;
@@ -52,12 +54,14 @@
 
 /* Speech bubble (replaces the daisyUI chat classes from the old site) */
 .thinking {
+  /* Anchored by its right edge just left of the head,
+     so the bubble never overlaps the face at any screen size */
   top: 20%;
-  left: -20%;
-  width: 10rem;
+  right: 76%;
 }
 
 .bubble {
+  position: relative; /* in normal flow, so .thinking wraps around it */
   margin: 0;
   width: max-content;
   max-width: 10rem;
@@ -67,6 +71,14 @@
   border-radius: 1rem 1rem 0 1rem;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+/* Smaller bubble on phones so it stays on screen */
+@media (max-width: 480px) {
+  .bubble {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
 }
 
 .bubble::after {
