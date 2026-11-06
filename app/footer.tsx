@@ -1,35 +1,41 @@
-'use client'
-import { AnimatedBackground } from '@/components/ui/animated-background'
-import { TextLoop } from '@/components/ui/text-loop'
-import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+"use client";
+import { AnimatedBackground } from "@/components/ui/animated-background";
+import { TextLoop } from "@/components/ui/text-loop";
+import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+
+// true in the browser, false during server render (no effect needed)
+const subscribe = () => () => {};
+function useMounted() {
+  return useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
+}
 
 const THEMES_OPTIONS = [
   {
-    label: 'Light',
-    id: 'light',
+    label: "Light",
+    id: "light",
     icon: <SunIcon className="h-5 w-5" />,
   },
   {
-    label: 'Dark',
-    id: 'dark',
+    label: "Dark",
+    id: "dark",
     icon: <MoonIcon className="h-5 w-5" />,
   },
   {
-    label: 'System',
-    id: 'system',
+    label: "System",
+    id: "system",
     icon: <MonitorIcon className="h-5 w-5" />,
   },
-]
+];
 
 function ThemeSwitch() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useMounted();
+  const { theme, setTheme } = useTheme();
 
   if (!mounted) {
     return null;
@@ -40,12 +46,12 @@ function ThemeSwitch() {
       className="rounded-lg bg-zinc-100 dark:bg-zinc-800"
       defaultValue={theme}
       transition={{
-        type: 'spring',
+        type: "spring",
         bounce: 0,
         duration: 0.2,
       }}
       enableHover={false}
-      onValueChange={(id) => setTheme(id as string) }
+      onValueChange={(id) => setTheme(id as string)}
     >
       {THEMES_OPTIONS.map((theme) => {
         return (
@@ -58,17 +64,21 @@ function ThemeSwitch() {
           >
             {theme.icon}
           </button>
-        )
+        );
       })}
     </AnimatedBackground>
-  )
+  );
 }
 
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-zinc-100 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-        <a href="https://github.com/Liliaelvis/meetbible-next" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/Liliaelvis/meetbible-next"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <TextLoop className="text-xs text-zinc-500">
             <span>Lilia Elba Mtz</span>
             <span>Built with shadcn/ui</span>
@@ -79,5 +89,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
