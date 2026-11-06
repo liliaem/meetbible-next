@@ -25,27 +25,21 @@ export default function NavigationBar() {
     <NavigationMenu className="relative">
       <NavigationMenuList className="flex space-x-4">
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}>
-              Home
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}>
+            <Link href="/">Home</Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/who-are-you" legacyBehavior passHref>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}>
-              Who Are You
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}>
+            <Link href="/who-are-you">Who Are You</Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/who-are-we" legacyBehavior passHref>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}>
-              Who Are We
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "px-4 py-2")}>
+            <Link href="/who-are-we">Who Are We</Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
