@@ -1,10 +1,10 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import NavigationBar from "@/app/navigation-bar";
-import { Footer } from './footer'
-import { ThemeProvider } from 'next-themes'
+import { Footer } from "./footer";
 import { Providers } from "./providers";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,19 +16,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Meetbible",
   description: "Meetbible charging",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <Providers>
-      <NavigationBar/> {/* Agrega la barra de navegación aquí */}
-        {children}
-        <Footer />
+          <NavigationBar /> {/* Agrega la barra de navegación aquí */}
+          {children}
+          <Footer />
         </Providers>
       </body>
     </html>
