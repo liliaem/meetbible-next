@@ -2,14 +2,18 @@ import styles from "./Pingui.module.css";
 
 // Lili's penguin mascot, drawn entirely with CSS shapes.
 // Ported from the original Create React App version (src/Components/Pingui.jsx).
-export default function Pingui({ message }) {
-  const s = (...names) => names.map((n) => styles[n]).join(" ");
+export default function Pingui({ message }: { message?: string }) {
+  const s = (...names: string[]) => names.map((n) => styles[n]).join(" ");
 
   return (
     <div className={s("fondo")}>
       <div className={s("sun")} aria-hidden="true" />
 
-      <div className={s("penguin")} role="img" aria-label="Penguin mascot waving">
+      <div
+        className={s("penguin")}
+        role="img"
+        aria-label="Penguin mascot waving"
+      >
         {message && (
           <div className={s("thinking")}>
             <p className={s("bubble")}>{message}</p>
